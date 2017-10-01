@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import YTSearch from 'youtube-api-search';
 import SearchBar from './components/SearchBar';
+import VideoList from './components/VideoList';
 const API_KEY = 'AIzaSyDdjEu5h7_2k8yg5WITlp71d6zW679B6XY';
 
 // Create a new component - this component should produce some HTML
@@ -18,10 +19,12 @@ class App extends Component {
     });
   }
   // use parens for multi-line JSX
+  // pass prop of videos from this parent component to child component
   render() {
     return (
       <div>
         <SearchBar />
+        <VideoList videos={this.state.videos}/>
       </div>
     );
   }

@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import YTSearch from 'youtube-api-search';
@@ -16,7 +17,11 @@ class App extends Component {
       selectedVideo: null
     };
 
-    YTSearch({key: API_KEY, term: 'surfboards'}, (videos) => {
+    this.videoSearch('surfboards')
+  }
+
+  videoSearch(term) {
+    YTSearch({key: API_KEY, term: term}, (videos) => {
       // ES6 syntax whenever key and value are identical, condense to one word
       // this.setState({ videos: videos })
       this.setState({
@@ -28,9 +33,11 @@ class App extends Component {
   // use parens for multi-line JSX
   // pass prop of videos from this parent component to child component
   render() {
+    const videoSearch = _.debounce((term) => { this.videoSearch(term) }, 300)
+
     return (
       <div>
-        <SearchBar />
+        <SearchBar onSearchTermChange={videoSearch} />
         <VideoDetail video={this.state.selectedVideo} />
         <VideoList
           onVideoSelect={selectedVideo => this.setState({selectedVideo})}

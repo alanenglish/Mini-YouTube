@@ -11,6 +11,7 @@ class SearchBar extends Component {
     // name properties accordingly
     this.state = { term: '' };
   }
+
   render() {          // every class must have a render function
     // whenever writing JSX and using Javascript variables, wrap in curly braces
     // onChange is now passed as a prop, set state of term prop to value entered into input
@@ -18,16 +19,20 @@ class SearchBar extends Component {
       <div className="search-bar">
         <input
           value={this.state.term}
-          onChange={event => this.setState({ term: event.target.value })} />
+          onChange={event => this.onInputChange(event.target.value)} />
       </div>
     );  // must return some JSX // React.createElement
   }
 
+  onInputChange(term) {
+    this.setState({term});
+    this.props.onSearchTermChange(term);
+  }
+}
   // event handler defined as method on the class
   // onInputChange(event) {
   //   console.log(event.target.value);
   // }
-}
 
 // any file that imports SearchBar will get the component
 export default SearchBar;

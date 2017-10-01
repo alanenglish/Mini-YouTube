@@ -15,7 +15,7 @@ class SearchBar extends Component {
     // whenever writing JSX and using Javascript variables, wrap in curly braces
     // onChange is now passed as a prop, set state of term prop to value entered into input
     return (
-      <div>
+      <div className="search-bar">
         <input
           value={this.state.term}
           onChange={event => this.setState({ term: event.target.value })} />

@@ -9,14 +9,16 @@ class SearchBar extends Component {
     // initialize by creating new object and assigning it to this.state
     // the object that is passed will also contain properties that we want to record on the state
     // name properties accordingly
-    this.state = {term: ''};
+    this.state = { term: '' };
   }
   render() {          // every class must have a render function
     // whenever writing JSX and using Javascript variables, wrap in curly braces
     // onChange is now passed as a prop, set state of term prop to value entered into input
     return (
       <div>
-        <input onChange={event => this.setState({ term: event.target.value })} />
+        <input
+          value={this.state.term}
+          onChange={event => this.setState({ term: event.target.value })} />
       </div>
     );  // must return some JSX // React.createElement
   }
